@@ -20,3 +20,9 @@ class RecordedAudio: NSObject{
     
     
 }
+
+struct RecordAudioStruct  {
+    
+    var filePathURL : NSURL?
+    var titleString : String? 
+}

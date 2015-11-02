@@ -19,6 +19,8 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     var audioRecorder:AVAudioRecorder!
     var recordAudio:RecordedAudio!
     
+    var recordAudioStruct : RecordAudioStruct!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -93,6 +95,10 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
             recordAudio = RecordedAudio() // initialize the new object
             recordAudio.filePathUrl = recorder.url
             recordAudio.title = recorder.url.lastPathComponent
+            
+            //recordAudioStruct = RecordAudioStruct()
+            recordAudioStruct.filePathURL = recorder.url
+            recordAudioStruct.titleString = recorder.url.lastPathComponent
             
             // Move to the second scene aka perform segue
             self.performSegueWithIdentifier("stopRecording", sender: recordAudio)
