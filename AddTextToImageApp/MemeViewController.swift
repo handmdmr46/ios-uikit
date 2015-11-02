@@ -10,6 +10,8 @@ import UIKit
 
 class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
+    // MARK: properties
+    
     @IBOutlet weak var topMessage: UITextField!
     @IBOutlet weak var bottomMessage: UITextField!
     @IBOutlet weak var imagePickerView: UIImageView!
@@ -17,12 +19,15 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     @IBOutlet weak var photoAlbumButton: UIBarButtonItem!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     
-    /*var memesFilePath : String {
+    /*
+    var memesFilePath : String {
     let manager = NSFileManager.defaultManager()
     let url = manager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
     return url.URLByAppendingPathComponent("memesArray").path!
-    }*/
+    }
+    */
     
+    // MARK: lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,9 +73,47 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        
         self.unsubscribeFromKeyboardNotifications()
     }
+    
+    // MARK: Actions
+    
+    @IBAction func pickImageFromAlbum(sender: AnyObject) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+        self.presentViewController(imagePicker, animated: true, completion: nil)
+    }
+    
+    @IBAction func pickImageFromCamera(sender: UIBarButtonItem) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
+        self.presentViewController(imagePicker, animated: true, completion: nil)
+    }
+    
+    
+    @IBAction func saveAndShare(sender: AnyObject) {
+        let memeImage = generateMemeImage()
+        let controller = UIActivityViewController(activityItems: [memeImage], applicationActivities: nil)
+        self.presentViewController(controller, animated: true, completion: nil)
+        controller.completionWithItemsHandler = {
+            activityType, completed, returnedItems, activityError in
+            self.savedMeme()
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
+    }
+    
+    @IBAction func cancel(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+        
+        // another method to dismiss view
+        /*if let navigationController = self.navigationController {
+        navigationController.popToRootViewControllerAnimated(true)
+        }*/
+    }
+    
+    // MARK: user interface
     
     func subscribeToKeyboardNotifications(){
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
@@ -99,6 +142,8 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue // of CGRect
         return keyboardSize.CGRectValue().height
     }
+    
+    // MARK: helper functions
     
     func generateMemeImage() -> UIImage {
         // hide toolbar and navbar
@@ -131,81 +176,42 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         
     }
     
-    /**
-    *   MARK: Delegate Methods
+    // MARK: Delegate Methods
+    
+    /*
+    ** Tells the delegate that the user cancelled the pick operation.
     */
-    
-    
-    //  Tells the delegate that the user cancelled the pick operation.
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    //  Tells the delegate that editing began for the specified text field.
+    /*
+    ** Tells the delegate that editing began for the specified text field.
+    */
     func textFieldDidBeginEditing(textField: UITextField) {
         if (textField.text == "top text" || textField.text == "bottom text") {
             textField.text = ""
         }
     }
     
-    //  Asks the delegate if the text field should process the pressing of the return button.
+    /*
+    ** Asks the delegate if the text field should process the pressing of the return button.
+    */
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
     
-    //  Tells the delegate that the user picked a still image or movie.
+    /*
+    ** Tells the delegate that the user picked a still image or movie.
+    */
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             imagePickerView.image = image
-            
-            //imagePickerView.contentMode = .ScaleAspectFill
             imagePickerView.contentMode = .ScaleAspectFit
             imagePickerView.contentMode = .ScaleToFill
             
             self.dismissViewControllerAnimated(true, completion: nil)
         }
     }
-    
-    /**
-    *   MARK: Actions
-    */
-    
-    @IBAction func pickImageFromAlbum(sender: AnyObject) {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-        self.presentViewController(imagePicker, animated: true, completion: nil)
-    }
-    
-    @IBAction func pickImageFromCamera(sender: UIBarButtonItem) {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
-        self.presentViewController(imagePicker, animated: true, completion: nil)
-    }
-    
-    
-    @IBAction func saveAndShare(sender: AnyObject) {
-        let memeImage = generateMemeImage()
-        let controller = UIActivityViewController(activityItems: [memeImage], applicationActivities: nil)
-        self.presentViewController(controller, animated: true, completion: nil)
-        controller.completionWithItemsHandler = {
-            activityType, completed, returnedItems, activityError in
-            self.savedMeme()
-            self.dismissViewControllerAnimated(true, completion: nil)
-        }
-    }
-    
-    @IBAction func cancel(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
-        
-        //        if let navigationController = self.navigationController {
-        //            navigationController.popToRootViewControllerAnimated(true)
-        //        }
-        
-    }
-    
 }
-
-

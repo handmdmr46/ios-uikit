@@ -16,19 +16,17 @@ class CollectionViewController: UICollectionViewController {
     
     @IBOutlet weak var myCollectionView: UICollectionView!
     
-    // connect to flow layout control in collection view storyboard
+    // connection: connect to flow layout control in collection view storyboard
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // set meme button in top nav bar
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Set Meme", style: UIBarButtonItemStyle.Plain, target: self, action: "getMemeViewController")
         
-        // dont forget to set the delegate and dataSource!! - NOTE: already connected with collection view
-        //myCollectionView.delegate = self
-        //myCollectionView.dataSource = self
+        // dont need to set the delegate and dataSource!! - NOTE: already connected with collection view
+        // this may be different if you add collection view to view controller in storyboard
         
         // set collection view cell layout
         let space: CGFloat = 3.0

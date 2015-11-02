@@ -11,12 +11,16 @@ import UIKit
 
 class Meme: NSObject, NSCoding {
     
+    // MARK: struct, constants
+    
     struct Keys {
         static let TopTextKey = "top_text_key"
         static let BottomTextKey = "bottom_text_key"
         static let ImageKey = "image_key"
         static let MemeImageKey = "meme_image_key"
     }
+    
+    // MARK: properties
     
     var topText: String
     var bottomText: String
@@ -32,30 +36,27 @@ class Meme: NSObject, NSCoding {
     
     // MARK: - NSCoding, needed so we can save objects to NSUserDefaults
     
+    /*
+    ** archive the information inside the Meme, one property at a time
+    */
     func encodeWithCoder(archiver: NSCoder) {
         
-        // archive the information inside the Meme, one property at a time
         archiver.encodeObject(topText, forKey: Keys.TopTextKey)
         archiver.encodeObject(bottomText, forKey: Keys.BottomTextKey)
         archiver.encodeObject(image, forKey: Keys.ImageKey)
         archiver.encodeObject(memeImage, forKey: Keys.MemeImageKey)
     }
     
+    /*
+    ** un-archive the data, one property at a time
+    */
     required init(coder unarchiver: NSCoder) {
-        
-        
-        // Unarchive the data, one property at a time
-        //        name = unarchiver.decodeObjectForKey(Keys.Name) as! String
-        //        id = unarchiver.decodeObjectForKey(Keys.ID) as! Int
-        //        imagePath = unarchiver.decodeObjectForKey(Keys.ProfilePath) as! String
-        //        movies = unarchiver.decodeObjectForKey(Keys.Movies) as! [Movie]
-        
+
         topText = unarchiver.decodeObjectForKey(Keys.TopTextKey) as! String
         bottomText = unarchiver.decodeObjectForKey(Keys.BottomTextKey) as! String
         image = unarchiver.decodeObjectForKey(Keys.ImageKey) as! UIImage
         memeImage = unarchiver.decodeObjectForKey(Keys.MemeImageKey) as! UIImage
         
         super.init()
-        
     }
 }
