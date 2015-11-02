@@ -1,5 +1,5 @@
 //
-//  TableCellController.swift
+//  DetailViewController.swift
 //  AddTextToImageApp
 //
 //  Created by martin hand on 11/1/15.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TableCellController: UIViewController {
+class DetailViewController: UIViewController {
     
     var meme: Meme!
     

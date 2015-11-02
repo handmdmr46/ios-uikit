@@ -67,7 +67,7 @@ class CollectionViewController: UICollectionViewController {
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
-        let cell = self.collectionView?.dequeueReusableCellWithReuseIdentifier("MemeCollectionViewCell", forIndexPath: indexPath) as! MemeCollectionViewCell
+        let cell = self.collectionView?.dequeueReusableCellWithReuseIdentifier("CollectionCellController", forIndexPath: indexPath) as! CollectionCellController
         
         let meme = memes[indexPath.row]
         
