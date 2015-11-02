@@ -8,20 +8,28 @@
 
 /* Begin PBXBuildFile section */
 		A90DD32E1BE70319007427BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90DD32D1BE70319007427BF /* AppDelegate.swift */; };
-		A90DD3301BE70319007427BF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90DD32F1BE70319007427BF /* ViewController.swift */; };
 		A90DD3331BE70319007427BF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A90DD3311BE70319007427BF /* Main.storyboard */; };
 		A90DD3351BE70319007427BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A90DD3341BE70319007427BF /* Assets.xcassets */; };
 		A90DD3381BE70319007427BF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A90DD3361BE70319007427BF /* LaunchScreen.storyboard */; };
+		A90DD3431BE717C7007427BF /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90DD3421BE717C7007427BF /* ResultViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		A90DD3451BE71830007427BF /* PlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90DD3441BE71830007427BF /* PlayViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		A90DD3471BE71871007427BF /* PlayLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90DD3461BE71871007427BF /* PlayLogViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		A90DD3491BE718F2007427BF /* RPS.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90DD3481BE718F2007427BF /* RPS.swift */; settings = {ASSET_TAGS = (); }; };
+		A90DD34B1BE718FF007427BF /* RPSMatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90DD34A1BE718FF007427BF /* RPSMatch.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		A90DD32A1BE70319007427BF /* PaperRockScissorsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PaperRockScissorsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A90DD32D1BE70319007427BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A90DD32F1BE70319007427BF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A90DD3321BE70319007427BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A90DD3341BE70319007427BF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A90DD3371BE70319007427BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A90DD3391BE70319007427BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A90DD3421BE717C7007427BF /* ResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
+		A90DD3441BE71830007427BF /* PlayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayViewController.swift; sourceTree = "<group>"; };
+		A90DD3461BE71871007427BF /* PlayLogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayLogViewController.swift; sourceTree = "<group>"; };
+		A90DD3481BE718F2007427BF /* RPS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RPS.swift; sourceTree = "<group>"; };
+		A90DD34A1BE718FF007427BF /* RPSMatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RPSMatch.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +62,42 @@
 		A90DD32C1BE70319007427BF /* PaperRockScissorsApp */ = {
 			isa = PBXGroup;
 			children = (
+				A90DD33F1BE7177D007427BF /* model */,
+				A90DD3411BE717A4007427BF /* view */,
+				A90DD3401BE71790007427BF /* controller */,
 				A90DD32D1BE70319007427BF /* AppDelegate.swift */,
-				A90DD32F1BE70319007427BF /* ViewController.swift */,
 				A90DD3311BE70319007427BF /* Main.storyboard */,
 				A90DD3341BE70319007427BF /* Assets.xcassets */,
 				A90DD3361BE70319007427BF /* LaunchScreen.storyboard */,
 				A90DD3391BE70319007427BF /* Info.plist */,
 			);
 			path = PaperRockScissorsApp;
+			sourceTree = "<group>";
+		};
+		A90DD33F1BE7177D007427BF /* model */ = {
+			isa = PBXGroup;
+			children = (
+				A90DD3481BE718F2007427BF /* RPS.swift */,
+				A90DD34A1BE718FF007427BF /* RPSMatch.swift */,
+			);
+			name = model;
+			sourceTree = "<group>";
+		};
+		A90DD3401BE71790007427BF /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				A90DD3421BE717C7007427BF /* ResultViewController.swift */,
+				A90DD3441BE71830007427BF /* PlayViewController.swift */,
+				A90DD3461BE71871007427BF /* PlayLogViewController.swift */,
+			);
+			name = controller;
+			sourceTree = "<group>";
+		};
+		A90DD3411BE717A4007427BF /* view */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = view;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,8 +171,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A90DD3301BE70319007427BF /* ViewController.swift in Sources */,
+				A90DD3451BE71830007427BF /* PlayViewController.swift in Sources */,
+				A90DD34B1BE718FF007427BF /* RPSMatch.swift in Sources */,
+				A90DD3471BE71871007427BF /* PlayLogViewController.swift in Sources */,
 				A90DD32E1BE70319007427BF /* AppDelegate.swift in Sources */,
+				A90DD3431BE717C7007427BF /* ResultViewController.swift in Sources */,
+				A90DD3491BE718F2007427BF /* RPS.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
