@@ -11,7 +11,8 @@ import AVFoundation
 
 class PlaySoundsViewController: UIViewController {
     
-    // globally declared vars
+    //MARK: properties
+    
     var audioPlayer:AVAudioPlayer!
     var receivedAudio:RecordedAudio!
     var audioEngine:AVAudioEngine!
@@ -22,6 +23,9 @@ class PlaySoundsViewController: UIViewController {
     @IBOutlet weak var pitchSlider: UISlider!
     
     @IBOutlet weak var stopButton: UIButton!
+    @IBOutlet weak var playButton: UIButton!
+    
+    // MARK: lefe cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,46 +45,40 @@ class PlaySoundsViewController: UIViewController {
         
         // initialize audioEngine
         audioEngine = AVAudioEngine()
-        //stopButton.hidden = true
-        //playButton.hidden = false
         
         // create audioFile using receivedAudio NSURL
         audioFile = try! AVAudioFile(forReading: receivedAudio.filePathUrl)
         
-        //        setUserInterfaceToPlayMode(false)
+        setUserInterfaceToPlayMode(false)
     }
     
     func setUserInterfaceToPlayMode(isPlayMode: Bool) {
-        //        playButton.hidden = isPlayMode
-        //        stopButton.hidden = !isPlayMode
-        //        pitchSlider.enabled = !isPlayMode
+                playButton.hidden = isPlayMode
+                stopButton.hidden = !isPlayMode
+                pitchSlider.enabled = !isPlayMode
     }
     
     @IBAction func stopAudio(sender: UIButton) {
         audioPlayer.stop()
         audioEngine.stop()
         audioEngine.reset()
-        setUserInterfaceToPlayMode(true)
+        setUserInterfaceToPlayMode(false)
+
     }
     
     @IBAction func playAudio(sender: AnyObject) {
-        // Get the pitch from the slider
+        
+        setUserInterfaceToPlayMode(true)
+        
         let pitch = pitchSlider.value
-        
-        // Play the sound
+
         playVariableAudio(pitch)
-        
-        // Set the UI
-        //        setUserInterfaceToPlayMode(true)
     }
     
-    /*func playAudio() {
-    audioPlayer.stop()
-    audioEngine.stop()
-    audioEngine.reset()
-    audioPlayer.currentTime = 0.0 // start at beginning of recording
-    audioPlayer.play()
-    }*/
+    @IBAction func pitchSliderDidMove(sender: UISlider) {
+        // Do Nothing?
+        print("slider Moved")
+    }
     
     func playVariableAudio(pitch: Float) {
         audioPlayer.stop()
@@ -102,18 +100,10 @@ class PlaySoundsViewController: UIViewController {
         
         // schedule file
         audioPlayerNode.scheduleFile(audioFile, atTime: nil, completionHandler: nil)
-        /*audioPlayerNode.scheduleFile(audioFile, atTime: nil) {
-        // When the audio completes, set the user interface on the main thread
-        dispatch_async(dispatch_get_main_queue()) {self.setUserInterfaceToPlayMode(false) }
-        }*/
         
         try! audioEngine.start()
+        
         audioPlayerNode.play()
-    }
-    
-    @IBAction func pitchSliderDidMove(sender: UISlider) {
-        // Do Nothing?
-        print("slider Moved")
     }
 }
 

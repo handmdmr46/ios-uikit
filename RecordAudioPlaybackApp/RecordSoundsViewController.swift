@@ -96,7 +96,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
             recordAudio.filePathUrl = recorder.url
             recordAudio.title = recorder.url.lastPathComponent
             
-            //recordAudioStruct = RecordAudioStruct()
+            recordAudioStruct = RecordAudioStruct()
             recordAudioStruct.filePathURL = recorder.url
             recordAudioStruct.titleString = recorder.url.lastPathComponent
             
