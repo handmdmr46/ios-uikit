@@ -20,7 +20,7 @@ class PlayLogViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     @IBAction func playAgain(sender: UIBarButtonItem) {
-        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("RockPaperScissorsViewController") as! RockPaperScissorsViewController
+        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("PlayViewController") as! PlayViewController
         self.presentViewController(vc, animated: true, completion: nil)
         
     }
